@@ -1,3 +1,4 @@
+//importing modules
 const express = require('express');
 const dotenv = require('dotenv');
 const userRouter = require('./routes/user.js');
@@ -6,14 +7,23 @@ const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
+const connectDB = require('./MongoDb/connect.js');
 
-
+//configure the dotenv library
 dotenv.config();
+
+//taking the values from .env file
 const PORT = process.env.PORT;
+const MONGODB_URL = process.env.MONGODB_URL;
+
+//creating the server from express library
 const app = express();
 
+//encoding the url to make the data passed through it to a object 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//setting up view engine which help us to send dynamic data in html,Here we are using handlebars 
 app.set('view engine', 'hbs')
 app.engine('hbs', hbs.engine({
     extname: 'hbs',
@@ -21,28 +31,31 @@ app.engine('hbs', hbs.engine({
     layoutDir: path.join(__dirname + '/views/layout/'),
     partialDir: path.join(__dirname + '/views/partials/'),
 }))
+
+//setting up the static directory,Make the server know that the static files are stored in public directory
 app.use(express.static(path.join(__dirname, '/public/')));
+
+//setting up the session,when the user make a reqest to the server the session starts 
 app.use(session({
     secret: "secret key",
     cookie: { maxAge: 600000 },
     resave: false,
     saveUninitialized: false
 }))
+
+//seperates routes for normal user and admin(we call normal user as user )
 app.use('/admin', adminRouter);
-app.use('/user', userRouter);
+app.use('/', userRouter);
 
-/*
-Cache-Control - controls the caching behaviour in the browser
-Private - the respones is intended for a single user and should not be shared(in proxy servers)
-no-cache - it allow to store cache but it revalidate the cache with the server before using a cached version
-no-store - it prevent from storing cache
-must-revalidate - it makes the cliet to revalidate cache on every server request 
-*/
-app.get('/', (req, res) => {
-    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-    res.render('user/index');
-})
+//function to start the server
+const StartServer = (MONGODB_URL) => {
 
-app.listen(PORT, () => {
-    console.log(`Server started ${PORT}`)
-})
+    //passing mongoDB url to database connecting function
+    connectDB(MONGODB_URL);
+    //make the server to listen the port  
+    app.listen(PORT, () => {
+        console.log(`Server started ${PORT}`)
+    });
+};
+
+StartServer(MONGODB_URL);

@@ -6,6 +6,7 @@ const adminRouter = require('./routes/admin.js');
 const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
+const passport =require('passport');
 const session = require('express-session');
 const connectDB = require('./MongoDb/connect.js');
 
@@ -37,11 +38,16 @@ app.use(express.static(path.join(__dirname, '/public/')));
 
 //setting up the session,when the user make a reqest to the server the session starts 
 app.use(session({
+    key: "user_id",
     secret: "secret key",
     cookie: { maxAge: 600000 },
     resave: false,
     saveUninitialized: false
-}))
+}));
+
+//passport module session mangement
+app.use(passport.initialize());
+app.use(passport.session());
 
 //seperates routes for normal user and admin(we call normal user as user )
 app.use('/admin', adminRouter);

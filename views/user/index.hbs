@@ -1,4 +1,156 @@
-<h1>User home</h1>
-<form action="/logout" method="get">
-<input type="submit" value="Logout">
-</form>
+<body>
+    <!-- Start Header -->
+    <header>
+        <!-- NavBar Added -->
+        <nav class="navbar navbar-expand-lg py-4">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="images/logo.png" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse fs-5" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact Us</a>
+                        </li>
+                    </ul>
+                    <div class="input-group w-25 d-flex justify-content-end">
+                        <form action="/logout" class="" method="get">
+                            <button class="btn btn-outline-danger " type="submit" id="button-addon2">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Carousel Added -->
+        <div class="container mt-3 mb-5">
+            <div class="carousel-inner rounded-3">
+                <div class="carousel-item active">
+                    <div class="row panda-bg-info p-5 d-flex align-items-center">
+                        <div class="col-lg-7 ps-5">
+                            <h1 class="fw-bold mb-3">Enjoy Our Products</h1>
+                            <p class="mb-4">Discover a World of Wonders at Pandas! Shop, Explore, and Elevate Your
+                                Lifestyle with a Click. Unleash the Shopaholic in You, Where Every Click Leads to an
+                                Exciting Find. Join the Retail Revolution Today!</p>
+                            <h1 class="price fw-semibold"></h1>
+                            <button type="button" class="btn-buy-now">Buy Now <i
+                                    class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                        <div class="col-lg-4">
+                            <img src="" class="d-block w-100 mt-4 mt-md-0" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Start Main -->
+    <main>
+        <!-- Categories -->
+        <div class="container my-5">
+            <h2 class="fw-semibold mb-3">Categories</h2>
+            <div class="row g-4">
+                {{#each categoryData}}
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div
+                        class="p-3 border bg-primary text-light d-flex align-items-center justify-content-around rounded-3 watch">
+                        <h2 class="fw-semibold">{{ this.title }}</h2>
+                        <img class="w-25" src={{ this.img}} alt="">
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <!-- Category Shoes -->
+        <section class="all-categories">
+            <section id="shoes" class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="fw-semibold mb-3">Shoes</h2>
+                    <h5 class="fw-semibold text-warning">See All</h5>
+                </div>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    {{#each shoeProducts }}
+                    <div class="col">
+                        <div class="card border-0 rounded-3 h-100">
+                            <img src={{this.img}} class="card-img-top" alt="...">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fw-semibold"> {{this.name}} </h5>
+                                <p class="card-text mt-4"> {{this.description}} </p>
+                                <h5 class="price fw-semibold">Ts.{{this.price}} </h5>
+                            </div>
+                            <div class="mb-4 mx-auto">
+                                <button type="button" class="btn-buy-now">Buy Now <i
+                                        class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </section>
+
+            <!-- Category Backpack -->
+            <section id="backpack" class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="fw-semibold mb-3">Backpack</h2>
+                    <h5 class="fw-semibold text-warning">See All</h5>
+                </div>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    {{#each bagProducts}}
+                    <div class="col">
+                        <div class="card border-0 rounded-3 h-100">
+                            <img src={{this.img}} class="card-img-top" alt="...">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fw-semibold"> {{this.name}} </h5>
+                                <p class="card-text mt-4"> {{this.description}} </p>
+                                <h5 class="price fw-semibold">Rs.{{this.price}} </h5>
+                            </div>
+                            <div class="mb-4 mx-auto">
+                                <button type="button" class="btn-buy-now">Buy Now <i
+                                        class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </section>
+        </section>
+
+        <!-- Subscribe Section -->
+        <section id="subscribe" style="height: 450px;"
+            class="container my-5 panda-bg-info rounded-3 d-flex justify-content-center align-items-center">
+            <div class="text-center">
+                <h3 class="fw-bold">LET'S STAY IN TOUCH</h3>
+                <h6 class="text-secondary">Get updates on sales, specials and more</h6>
+                <div class="input-group mt-4 mb-3">
+                    <input type="text" class="form-control fs-5 ps-4 pe-5 py-2" placeholder="Enter your email"
+                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <button class="btn-buy-now mt-0 px-5 text-capitalize" type="button" id="button-addon2">Send</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- End Main -->
+
+    <!-- Start Footer -->
+    <footer class="mb-0 pb-0 mt-3 text-center">
+        <small>©2023. Panda Commerce. All rights reserved.</small>
+    </footer>
+    <!-- End Footer -->
+</body>

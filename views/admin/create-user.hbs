@@ -8,13 +8,20 @@
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-
+                {{#if error}}
+                {{#each error}}
+                <div class=" alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong> {{this.msg}} </strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {{/each}}
+                {{/if}}
                 <form action="/admin/create-user" method="post" class="mx-1 mx-md-4">
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control"  name="name"/>
+                      <input type="text" id="form3Example1c" class="form-control" name="name" />
                       <label class="form-label" for="form3Example1c">Your Name</label>
                     </div>
                   </div>
@@ -38,7 +45,7 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example4cd" class="form-control" name="confirm-pass"/>
+                      <input type="password" id="form3Example4cd" class="form-control" name="confirm-pass" />
                       <label class="form-label" for="form3Example4cd">Repeat your password</label>
                     </div>
                   </div>

@@ -1,26 +1,32 @@
 <section>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg py-4">
         <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <div class="collapse navbar-collapse fs-5" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">All users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#">All products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a class="nav-link" href="#">Graph</a>
                     </li>
                 </ul>
+                <div class="input-group w-25 d-flex justify-content-end">
+                    <form action="/logout" class="" method="get">
+                        <button class="btn btn-outline-danger " type="submit" id="button-addon2">Logout</button>
+                    </form>
+                </div>
             </div>
         </div>
     </nav>
@@ -34,7 +40,7 @@
         </div>
         <div class="container p-5">
             <div class="row d-flex justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <table class="table" id="myTable">
                         <thead>
                             <tr>
@@ -51,9 +57,9 @@
                                 <td>{{ this.name }}</td>
                                 <td>{{ this.email }}</td>
                                 <td>
-                                        <a href="/admin/edit-user/{{this._id}}" class="btn btn-primary">Edit</a>
-                                        <a href="/admin/delete-user/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure to delete {{this.name}} user')">Delete</a>
-                                   
+                                    <a href="/admin/edit-user/{{this._id}}" class="btn btn-primary">Edit</a>
+                                    <a href="/admin/delete-user/{{this._id}}" class="btn btn-danger"
+                                        onclick="return confirm('Are you sure to delete {{this.name}} user')">Delete</a>
                                 </td>
                             </tr>
                             {{/each}}
@@ -67,7 +73,7 @@
 </section>
 
 <script>
-    $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
 </script>

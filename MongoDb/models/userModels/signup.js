@@ -1,5 +1,8 @@
+//importing modules
 const mongoose = require('mongoose');
 
+
+//defining the structure of the collection
 const newUserSchema = new mongoose.Schema({
     name: {
         type:String,
@@ -16,6 +19,7 @@ const newUserSchema = new mongoose.Schema({
     }
 });
 
+//creating the model
 const newUser = mongoose.model('user',newUserSchema);
 
 module.exports = newUser;

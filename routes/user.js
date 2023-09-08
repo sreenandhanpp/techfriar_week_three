@@ -90,7 +90,7 @@ router.get('/logout',(req,res)=>{
     //destroying the session and redirecting to login page
     req.session.destroy((err)=>{
         if(err){
-            console.log(err);
+            res.redirect('not-found')
         }else{
             res.redirect('/login');
         }
@@ -106,7 +106,7 @@ router.get('/google/callback',passport.authenticate('google',{
     //if success redirect to home page 
     successRedirect: '/',
     //if success redirect to 404 page 
-    failureRedirect: '/google/failure'
+    failureRedirect: '/not-found'
 }));
 
 //facebook authentication route
@@ -117,8 +117,14 @@ router.get('/facebook/callback',passport.authenticate('facebook',{
     //if success redirect to home page 
     successRedirect: '/',
     //if success redirect to 404 page 
-    failureRedirect: '/facebook/failure'
+    failureRedirect: '/not-found'
 }));
 
+
+//Not found page
+router.get('/not-found',(req,res)=>{
+    let admin = req.session.admin;
+    res.render('not-found',{ admin });
+})
 
 module.exports = router;

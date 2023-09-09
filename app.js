@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, '/public/')));
 app.use(session({
     key: "user_id",
     secret: "secret key",
-    cookie: { maxAge: 600000 },
+    cookie: { maxAge: 600000,secure: false },
     resave: false,
     saveUninitialized: false
 }));

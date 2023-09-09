@@ -29,6 +29,7 @@ module.exports = {
             //checking if the user is admin,if the user if admin setting admin role to true
             if(adminPass == userData.password && adminEmail == userData.email){
                 response.admin = true;
+                response.name = "admin";
                 resolve(response);
             }else{
                 //if it is a normal user Match the uesr email

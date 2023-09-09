@@ -24,7 +24,8 @@ router.get('/',isAuth,(req, res) => {
     must-revalidate - it makes the cliet to revalidate cache on every server request 
     */
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-    res.render('user/index' ,{ shoeProducts,bagProducts,categoryData });
+    let  userName = req.session.user;
+    res.render('user/index' ,{ shoeProducts,bagProducts,categoryData, userName });
 });
 
 //user signup route
@@ -103,11 +104,12 @@ router.get('/google',passport.authenticate('google',{ scope: ['email', 'profile'
 
 //google authentication callback route
 router.get('/google/callback',passport.authenticate('google',{
-    //if success redirect to home page 
-    successRedirect: '/',
     //if success redirect to 404 page 
     failureRedirect: '/not-found'
-}));
+}),(req,res)=>{
+    req.session.user = req.user.displayName;
+    res.redirect('/');
+});
 
 //facebook authentication route
 router.get('/facebook',passport.authenticate('facebook',{ scope: [ 'public_profile','email'] }));
@@ -115,10 +117,13 @@ router.get('/facebook',passport.authenticate('facebook',{ scope: [ 'public_profi
 //facebook authentication callback route
 router.get('/facebook/callback',passport.authenticate('facebook',{
     //if success redirect to home page 
-    successRedirect: '/',
     //if success redirect to 404 page 
     failureRedirect: '/not-found'
-}));
+}),(req,res)=>{
+    req.session.user = req.user.displayName;
+    res.redirect('/');
+}
+);
 
 
 //Not found page

@@ -22,14 +22,24 @@
                         <a class="nav-link" href="#">Graph</a>
                     </li>
                 </ul>
-                <div class="input-group w-25 d-flex justify-content-end">
+                {{!-- <div class="input-group w-25 d-flex justify-content-end">
                     <form action="/logout" class="" method="get">
                         <button class="btn btn-outline-danger " type="submit" id="button-addon2">Logout</button>
                     </form>
+                </div> --}}
+                <div class="dropdown">
+                    <a class="btn btn-info dropdown-toggle text-white"  href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{userName}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </nav>
+    
     <section>
         <div class="container">
             <div class="row">

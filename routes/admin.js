@@ -10,9 +10,10 @@ const router = express.Router();
 //admin root route
 router.get('/',isAdmin, (req,res)=>{
     //getting all users data and then rendering the hbs with the data object 
+    let  userName = req.session.user;
     adminHelper.fetchUsers().then((data)=>{
         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-        res.render('admin/index', { data } );
+        res.render('admin/index', { data ,userName } );
     })
 });
 
